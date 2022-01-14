@@ -23,11 +23,16 @@ def strt():
 
     while editor != 's':
         os.system('clear')
+        demo = img.copy()
         aumento_x = int(input('Mover el eje x: '))
         aumento_y = int(input('Mover el eje Y: '))
-        aumento_w = int(input('Extender el ancho: '))
-        aumento_h = int(input('Extender la altura: '))
-
+        if (input('Aumentos automaticos: [s/n] ') == 's'):
+            aumento_w = int(np.abs(aumento_x *2))
+            aumento_h = int(np.abs(aumento_y *2))
+        else:
+            aumento_w = int(input('Extender el ancho: '))
+            aumento_h = int(input('Extender la altura: '))
+            
         for (x,y,width,height) in faces:
             new_x = x + aumento_x
             new_y = y + aumento_y
@@ -36,9 +41,9 @@ def strt():
 
             print(x)
             print(new_x)
-            cv2.rectangle(img, (new_x,new_y) , (new_x+new_w ,new_y+new_h) , (255,0,0) ,3)
+            cv2.rectangle(demo, (new_x,new_y) , (new_x+new_w ,new_y+new_h) , (255,0,0) ,3)
 
-        cv2.imshow('frame',img)
+        cv2.imshow('frame',demo)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         editor = input('Ls cara quedo marcada correctamente [s/n] ')

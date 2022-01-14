@@ -47,3 +47,15 @@ def strt():
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         editor = input('Ls cara quedo marcada correctamente [s/n] ')
+
+        y1 = new_y
+        y2 = new_y + new_h
+        x1 = new_x
+        x2 = new_x + new_w
+        ROI = img[y1:y2, x1:x2]
+
+        cv2.imshow('frame',ROI)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        cv2.imwrite('face.JPG',ROI)
+        print('Face Saved!!')

@@ -19,9 +19,26 @@ def strt():
 
     faces = face_cascade.detectMultiScale(gray,1.3,5)
 
-    for (x,y,width,height) in faces:
-        cv2.rectangle(img, (x,y) , (x+width ,y+height) , (255,0,0) ,3)
+    editor = 'z'
 
-    cv2.imshow('frame',img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    while editor != 's':
+        os.system('clear')
+        aumento_x = int(input('Mover el eje x: '))
+        aumento_y = int(input('Mover el eje Y: '))
+        aumento_w = int(input('Extender el ancho: '))
+        aumento_h = int(input('Extender la altura: '))
+
+        for (x,y,width,height) in faces:
+            new_x = x + aumento_x
+            new_y = y + aumento_y
+            new_w = width + aumento_w
+            new_h = height + aumento_h
+
+            print(x)
+            print(new_x)
+            cv2.rectangle(img, (new_x,new_y) , (new_x+new_w ,new_y+new_h) , (255,0,0) ,3)
+
+        cv2.imshow('frame',img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        editor = input('Ls cara quedo marcada correctamente [s/n] ')
